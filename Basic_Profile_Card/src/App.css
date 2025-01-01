@@ -1,0 +1,69 @@
+.app{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.card_body{
+  width: 90%;
+  max-width: 400px;
+  margin: 0 auto;
+  background-color: #FFFFFF;
+  border-radius: 50px;
+}
+.cardbody_header{
+  background-image: url('../src/assets/images/header-bg.png');
+  height: 200px;
+  background-size: cover;
+  background-position: right bottom;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items:flex-start;
+}
+.cardbody_content{
+  text-align: center;
+  padding: 0.5rem;
+}
+.cardbody_title{
+  margin-top: 10px;
+}
+.cardbody_text{
+  margin: 30px 0;
+  color: #838383;
+  font-weight: 500;
+}
+.cardbody_social{
+  display: flex;
+  justify-content: space-evenly;
+  margin: 20px 0;
+}
+.cardbody_social svg:hover{
+  cursor: pointer;
+}
+.cardbody_social svg:hover path{
+  fill: #E03F8C;
+  transition: all 0.3s;
+}
+
+.cardbody_footer{
+  display: flex;
+  justify-content: space-around;
+}
+.cardbody_footer button{
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 50px;
+  color: #FFFFFF;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  width: 120px;
+  margin-bottom: 25px;
+  font-size: medium;
+}
+.cardbody_footer button:nth-child(2){
+  background-color: #FFFFFF;
+  color: #838383;
+  outline: 1px solid #838383;
+}

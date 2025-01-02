@@ -1,8 +1,12 @@
 import React from 'react'
 import { useFileUpload } from './useFileUpload';
+import CoverImage from '../assets/images/Cover.png'
 
 const ProfileCardCover = () => {
-    const {image: coverImage, fileInputRef, handleClick, handleFileChange} = useFileUpload('src/assets/images/Cover.png');
+    const {image: coverImage, fileInputRef, handleClick, handleFileChange} = useFileUpload(CoverImage);
+
+    console.log('hello');
+
     const profileCardCoverStyle = {
         backgroundImage: `url(${coverImage})`,
         backgroundSize: 'cover',

@@ -32,7 +32,29 @@ const Product = () => {
             </div>
         </div>
         <div className="product-details">
-            hello
+            <p className='product-brand'>polo ralph</p>
+            <h1 className='product-name'>custom fit polo bear oxford shirt</h1>
+            <p className='product-description'>White polo with a touch of blue with a classic cut. made of smooth and fine cotton</p>
+            <div className="product-price">
+                <div className="discount">
+                    <h2>$99.00</h2>
+                    <h5>-25%</h5>
+                </div>
+                <div>
+                    <h4>$132.00</h4>
+                </div>
+            </div>
+            <div className="product-size">
+                <h3>choose size</h3>
+                <div className="size-options">
+                    <p>S</p>
+                    <p>M</p>
+                    <p>L</p>
+                    <p>XL</p>
+                    <p>XXL</p>
+                </div>
+            </div>
+            <button className='addToBag-btn'>add to bag</button>
         </div>
     </div>
   )

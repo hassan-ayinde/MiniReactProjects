@@ -38,6 +38,10 @@
 .product-image-thumbnails img:nth-child(2){
     object-position: top;
 }
+.product-image-thumbnails img.selected { 
+    border: 2px solid blue;
+    transition: all 0.3s ease;
+}
 .product-details{
     width: 100%;
 }

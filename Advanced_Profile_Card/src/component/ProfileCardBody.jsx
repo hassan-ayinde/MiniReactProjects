@@ -3,7 +3,7 @@ import ProfilePicture from '../assets/images/profile_picture.png'
 import { useFileUpload } from './useFileUpload';
 
 const ProfileCardBody = () => {
-  const {image: profileImage, fileInputRef, handleClick: handleProfileImageContainer, handleFileChange: handleProfileImageChange} = useFileUpload(ProfilePicture);
+  const {image, fileInputRef, handleClick: handleProfileImageContainer, handleFileChange: handleProfileImageChange} = useFileUpload(ProfilePicture,'profileImage');
   const [following, setFollowing] = useState(false);
   const handleBtnClick = () => {
     setFollowing(!following);
@@ -27,7 +27,7 @@ const ProfileCardBody = () => {
     <div>
       <div className='profile_card_body'>
         <div className='profile_image_container' onClick={handleProfileImageContainer}>
-          <img src={profileImage} alt='profile' className='profile_image'/>
+          <img src={image} alt='profile' className='profile_image'/>
           <div style={cameraIconStyle}>
             <i class="fa-regular fa-image"></i>
           </div>

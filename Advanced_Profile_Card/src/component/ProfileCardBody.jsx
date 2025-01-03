@@ -1,13 +1,19 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 import ProfilePicture from '../assets/images/profile_picture.png'
 import { useFileUpload } from './useFileUpload';
 
 const ProfileCardBody = () => {
   const {image, fileInputRef, handleClick: handleProfileImageContainer, handleFileChange: handleProfileImageChange} = useFileUpload(ProfilePicture,'profileImage');
-  const [following, setFollowing] = useState(false);
+  const [following, setFollowing] = useState(() => {
+    const savedFollowing = localStorage.getItem('following');
+    return savedFollowing ? JSON.parse(savedFollowing) : false;
+  });
   const handleBtnClick = () => {
     setFollowing(!following);
   }
+  useEffect(() => {
+    localStorage.setItem('following',JSON.stringify(following))
+  },[following])
   const cameraIconStyle = {
     border: '2px solid grey', 
     width: '30px', 

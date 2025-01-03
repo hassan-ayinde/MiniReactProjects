@@ -4,7 +4,6 @@ export const useFileUpload = (initialImage,storageKey) => {
   const [image, setImage] = useState(() => {
     const savedImage = localStorage.getItem(storageKey);
     return savedImage || initialImage;
-    // return initialImage || savedImage
   });
   const fileInputRef = useRef(null);
 

@@ -1,13 +1,17 @@
 .app{
     width: 90%;
-    max-width: 350px;
-    margin: auto;
+    max-width: 320px;
+    margin: 20px auto;
     background-color: #FFFFFF;
     padding: 20px;
+    border-radius: 25px;
 }
 .userprofile-card{
     display: flex;
-    border-bottom: 1px solid red;
+    border-bottom: 1px solid #d3cccc;
+    gap: 20px;
+    align-items: center;
+    padding-bottom: 20px;
 }
 .userprofile-card img{
     width: 50px;
@@ -34,10 +38,35 @@
     justify-content: center;
 }
 .main-option-container li,
-.other-option li{
+.other-option li,
+.footer-icons li{
     list-style-type: none;
-    margin: 20px 0;    
+    margin: 15px 0;    
 }
-.dropdown-icon{
+.other-option{
+    border-top: 1px solid #d3cccc;
+}
+.main-option-container li,
+.other-option li{
+    color: #2C2A34;
+}
+.footer-icons ul{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+.footer-icons li{
     cursor: pointer;
-  }
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: #b4b3c7;
+}
+.footer-icons li:hover{
+    background-color: #9AA2E2;
+    transition: all 0.3s ease;
+    color: #DBDAEC;
+}

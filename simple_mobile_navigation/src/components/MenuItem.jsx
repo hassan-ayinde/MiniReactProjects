@@ -1,8 +1,14 @@
 import React from 'react'
 
-const MenuItem = () => {
+const MenuItem = ({menuOption,icons:{option,dropdown}}) => {
   return (
-    <div></div>
+    <div className='menuItem-container'>
+      <div className='option-container'>
+        <p className='option-icon'>{option}</p>
+        <h3>{menuOption}</h3>
+      </div>
+      <div>{dropdown}</div>
+    </div>
   )
 }
 

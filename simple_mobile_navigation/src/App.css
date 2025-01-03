@@ -1,4 +1,43 @@
+.app{
+    width: 90%;
+    max-width: 350px;
+    margin: auto;
+    background-color: #FFFFFF;
+    padding: 20px;
+}
 .userprofile-card{
     display: flex;
     border-bottom: 1px solid red;
 }
+.userprofile-card img{
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+}
+.menuItem-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.option-container{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.option-icon{
+    background-color: #E7EBF7;
+    border-radius: 5px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.main-option-container li,
+.other-option li{
+    list-style-type: none;
+    margin: 20px 0;    
+}
+.dropdown-icon{
+    cursor: pointer;
+  }

@@ -14,9 +14,21 @@
     padding-bottom: 20px;
 }
 .userprofile-card img{
+    vertical-align: middle;
     width: 50px;
     height: 50px;
     border-radius: 10px;
+    object-fit: cover;
+    object-position: center;
+}
+.profile-img-wrapper{
+    position: relative;
+    cursor: pointer;
+}
+.userprofile-card span{
+    position: absolute;
+    left: 15px;
+    top: 12px;
 }
 .menuItem-container{
     display: flex;
@@ -69,4 +81,8 @@
     background-color: #9AA2E2;
     transition: all 0.3s ease;
     color: #DBDAEC;
+}
+.error-message{
+    color: red;
+    font-size: small;
 }

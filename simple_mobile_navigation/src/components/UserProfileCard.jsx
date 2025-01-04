@@ -1,4 +1,4 @@
-import React,{useState,useRef} from 'react'
+import React,{useState,useRef, useEffect} from 'react'
 import ProfileImage from '../assets/images/cover.png'
 import { FontAwesomeIcon } from './FontAwesomeIcons';
 
@@ -7,6 +7,13 @@ const UserProfileCard = ({setErrorMessage}) => {
   const fileInputRef = useRef(null);
 
   const MAX_FILE_SIZE_MB = 1;
+
+  useEffect(() => {
+    const storedImage = localStorage.getItem('profileImage');
+    if (storedImage) {
+      setImage(storedImage);
+    }
+  }, []);
 
   const handleProfileImageContainer = () => {
     if (fileInputRef.current) fileInputRef.current.click();
@@ -22,9 +29,14 @@ const UserProfileCard = ({setErrorMessage}) => {
         return;
       }
 
-      const imageUrl = URL.createObjectURL(file);
-      setImage(imageUrl);
-      setErrorMessage(''); // Clear error if the upload is successful
+      const reader = new FileReader();
+      reader.onload = () => {
+        const base64Image = reader.result;
+        setImage(base64Image);
+        localStorage.setItem('profileImage', base64Image); // Store image in localStorage
+        setErrorMessage(''); // Clear error if the upload is successful
+      };
+      reader.readAsDataURL(file);
     }
   }
   return (
@@ -44,10 +56,9 @@ const UserProfileCard = ({setErrorMessage}) => {
           onChange={handleProfileImageChange}
         />
       </div>
-      <div>
+      <div className='userProfile-details'>
         <h2>Lisa Richardson</h2>
         <h5>Ethical Hacker</h5>
-        {/* {errorMessage && <p className="error-message">{errorMessage}</p>} */}
       </div>
     </div>
   )

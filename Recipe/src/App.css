@@ -1,3 +1,7 @@
+.recipe{
+  width: 400px;
+  margin: 0 auto;
+}
 figure{
   position: relative;
   margin-block-end: 0;
@@ -15,4 +19,95 @@ figcaption{
   background-color: #000000;
   padding: 10px;
   width: 250px;
+}
+.recipe-content{
+  /* margin-top: 30px; */
+  display: flex;
+  flex-direction: column;
+  /* gap: 20px; */
+  justify-content: space-evenly;
+  height: 700px;
+}
+.recipe-header{
+  width: 300px;
+}
+.recipe-info,
+.recipe-info-item{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.recipe-info-item{
+  gap: 5px;
+}
+.recipe-info-item p:last-child{
+  color: #BB144F;
+}
+.recipe-info-item p:first-child{
+  text-transform: uppercase;
+}
+.recipe-info{
+  width: 100%;
+}
+.recipe-ingredients ul{
+  list-style: none;
+}
+.recipe-ingredients li{
+  position: relative;
+  padding-left: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.recipe-ingredients li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  border: 1px solid #000;
+  background-color: #fff;
+  transition: all 0.3s ease;
+}
+.recipe-ingredients li:hover::before {
+  background-color: #BB144F;
+  background-image: url('../src/assets/images/check-mark.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.recipe-instructions ol{
+  list-style: inside;
+  list-style-type: decimal;
+}
+.recipe-instructions li{
+  margin-top: 5px;
+}
+@media screen and (min-width: 568px){
+  .recipe{
+    display: flex;
+    width: 100%;
+    gap: 30px;
+  }
+  .recipe-header{
+    background-color: #fff;
+    margin-left: -90px;
+    z-index: 9999 !important;
+    position: relative;
+    width: 450px;
+    padding: 10px 20px;
+    font-size: larger;
+    text-transform: capitalize;
+  }
+  .recipe-info{
+    width: 400px;
+  }
+  .recipe-info-item{
+    gap: 10px;
+  }
+  .recipe-content{
+    height: 100vh;
+  }
+  
 }

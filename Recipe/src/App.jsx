@@ -1,11 +1,17 @@
-import './App.css'
+import React, {useState} from 'react'
 import RecipeImage from '../src/assets/images/recipe-img.jpg'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faStar, faClock} from '@fortawesome/free-regular-svg-icons'
-import {faCertificate, faWallet} from '@fortawesome/free-solid-svg-icons'
+import {faStar as regularStar, faClock} from '@fortawesome/free-regular-svg-icons'
+import {faCertificate, faWallet,faStar as solidStar} from '@fortawesome/free-solid-svg-icons'
+import './App.css'
 
 function App() {
+  const [rating, setRating] = useState(0);
+  const [hoverRating, setHoverRating] = useState(0);
 
+  const handleRating = (newRating) => {
+    setRating(newRating);
+  }
   return (
     <div className="recipe">
       <figure>
@@ -14,12 +20,19 @@ function App() {
       </figure>
       <div className='recipe-content'>
         <div className='recipe-header'>
-          <div>
-            <FontAwesomeIcon icon={faStar} />
-            <FontAwesomeIcon icon={faStar} />
-            <FontAwesomeIcon icon={faStar} />
-            <FontAwesomeIcon icon={faStar} />
-            <FontAwesomeIcon icon={faStar} />
+          <div className='recipe-rating'>
+            {[1, 2, 3, 4, 5].map((star) => (
+                <FontAwesomeIcon
+                key={star}
+                icon={star <= (hoverRating || rating) ? solidStar : regularStar} // Toggle between solid and regular star
+                className={`star-icon ${
+                  star <= (hoverRating || rating) ? 'active' : ''
+                }`}
+                onClick={() => handleRating(star)}
+                onMouseEnter={() => setHoverRating(star)}
+                onMouseLeave={() => setHoverRating(0)}
+              />
+              ))}
           </div>
           <h1>sweet iced coffee with coconut milk</h1>
         </div>

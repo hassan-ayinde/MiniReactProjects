@@ -21,15 +21,16 @@ figcaption{
   width: 250px;
 }
 .recipe-content{
-  /* margin-top: 30px; */
   display: flex;
   flex-direction: column;
-  /* gap: 20px; */
   justify-content: space-evenly;
   height: 700px;
 }
 .recipe-header{
   width: 300px;
+}
+.recipe-rating{
+  cursor: pointer;
 }
 .recipe-info,
 .recipe-info-item{
@@ -84,6 +85,19 @@ figcaption{
 .recipe-instructions li{
   margin-top: 5px;
 }
+
+.star-icon {
+  color: #ccc;
+  font-size: 20px;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+  color: #BB144F;
+}
+
+.star-icon.active {
+  color: #397200; /* Highlighted star color */
+}
+
 @media screen and (min-width: 568px){
   .recipe{
     display: flex;

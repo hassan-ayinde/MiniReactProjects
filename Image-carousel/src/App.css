@@ -1,0 +1,39 @@
+.slider-container {
+  width: 80%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.slick-thumb {
+  display: flex !important;
+  justify-content: space-between;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.slick-thumb li {
+  width: 100% !important;
+}
+
+.slick-thumb img {
+  border: 2px solid transparent;
+  border-radius: 5px;
+  cursor: pointer;
+  height: 40px;
+  width: 100%;
+  object-fit: cover;
+}
+.slick-thumb .slick-active img {
+  border: 2px solid #007bff;
+}
+
+
+.slick-prev:before, .slick-next:before{
+  color: #007bff !important;
+}
+@media screen and (min-width: 768px) {
+  .slick-thumb img{
+    height: 70px;
+  }
+  
+}

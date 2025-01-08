@@ -1,0 +1,51 @@
+.app-container{
+    width: 90%;
+    max-width: 400px;
+    /* margin-left: 100px; */
+}
+.form-header h1{
+    font-size: small;
+    font-weight: 500;
+    margin-bottom: 0 !important;
+}
+.form-header p{
+    font-size: x-large;
+    font-weight: bolder;
+
+}
+.row{
+    --bs-gutter-x: 10px !important;
+    justify-content: space-between;
+}
+.form-floating>.form-control{
+    height: 10px !important;
+    min-height: 40px !important;
+}
+.form-floating>label{
+    padding: .4rem .75rem !important;
+    padding-bottom: 0 !important;
+}
+.form-floating>.form-control:not(:placeholder-shown)~label{
+    height: fit-content;
+}
+.form-floating>.form-control:focus~label::after,
+.form-floating>.form-control:not(:placeholder-shown)~label::after{
+    background-color: transparent !important;
+}
+.form-floating{
+    margin-bottom: 25px;
+}
+.password-container{
+    margin-bottom: 10px;
+}
+input:focus{
+    border: 1px solid blue;
+    box-shadow: none !important;
+}
+@media screen and (min-width: 568px){
+    .form-header p{
+        font-size: xx-large;
+    
+    }
+    
+}

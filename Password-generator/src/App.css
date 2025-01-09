@@ -25,6 +25,7 @@
   border: none;
   outline: none;
   background-color: transparent;
+  color: #fff;
 }
 .character-length input{
   width: 100%;

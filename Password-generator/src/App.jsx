@@ -3,6 +3,7 @@ import PasswordGenerator from './component/PasswordGenerator'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faCopy} from '@fortawesome/free-regular-svg-icons'
 import {faArrowsRotate} from '@fortawesome/free-solid-svg-icons'
+import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import './App.css'
 
 function App() {
@@ -12,6 +13,8 @@ function App() {
   const [includeLowercase, setIncludeLowercase] = useState(true);
   const [includeNumbers, setIncludeNumbers] = useState(true);
   const [includeSymbols, setIncludeSymbols] = useState(false);
+
+  const [icon, setIcon] = useState(faCopy);
 
   const generatePassword = () => {
     const upperCaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -38,6 +41,19 @@ function App() {
     setPassword(generatedPassword);
   };
 
+  const handleCopyClick = () => {
+    // Change the icon to check
+    setIcon(faCheck);
+
+    // Copy the password to clipboard
+    navigator.clipboard.writeText(password);
+
+    // Revert the icon back to copy after 2 seconds
+    setTimeout(() => {
+      setIcon(faCopy);
+    }, 1000);
+  };
+
   const iconStyle = {
     cursor: 'pointer',
     color: '#AC58D3',
@@ -50,8 +66,23 @@ function App() {
         <p>generated password</p>
         <div className="password-display">
           <input type="text" readOnly name="" id="" value={password}/>
-          <FontAwesomeIcon icon={faCopy} style={iconStyle}/>
-          <FontAwesomeIcon icon={faArrowsRotate}  style={iconStyle}/>
+          <FontAwesomeIcon 
+           icon={icon} 
+           style={{
+            ...iconStyle,
+            cursor: password ? 'pointer' : 'not-allowed',
+            opacity: password ? 1 : 0.5,
+           }} 
+            onClick={handleCopyClick}
+          />
+          <FontAwesomeIcon icon={faArrowsRotate}  
+           style={{
+            ...iconStyle,
+            cursor: password ? 'pointer' : 'not-allowed',
+            opacity: password ? 1 : 0.5,
+          }} 
+           onClick={password ? generatePassword : null}
+          />
         </div>
       </div>
       <div className="character-length">

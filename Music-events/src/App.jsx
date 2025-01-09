@@ -1,10 +1,24 @@
-import React from 'react'
+import React, {useState} from 'react'
 import EventsData from '../src/data.json'
 import './App.css'
 
 
 function App() {
+  const [eventStatus, setEventStatus] = useState(EventsData.events.map(event => {
+    return {
+      status: event.status
+    }   
+  }));
   const colors = ["#FFDDC1", "#C1E1FF", "#D1FFC1", "#FFC1E1", "#C1C1FF"];
+
+  const handleTicketSale = (index) => {
+    // Update the status of the clicked event
+    if (eventStatus[index].status === 'Buy a Ticket'){
+      const updatedStatus = [...eventStatus];
+      updatedStatus[index] = { status: 'Sold Out' };
+      setEventStatus(updatedStatus);
+    }
+  };
 
   return (
     <div className="App">
@@ -24,7 +38,7 @@ function App() {
                 <p className='event-description'>{event.description}</p>
               </div>
               <div className='event-status'>
-                <button>{event.status}</button>
+                <button onClick={() => handleTicketSale(index)}>{eventStatus[index].status}</button>
               </div>
             </div>
           )

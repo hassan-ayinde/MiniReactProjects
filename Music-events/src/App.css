@@ -1,0 +1,67 @@
+.App{
+  width: 90%;
+  margin: auto;
+  max-width: 700px;
+}
+.event-card{
+  display: flex;
+  flex-direction: column;
+  background-color: #FFFFFF;
+  justify-content: space-between;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px 0;
+  height: auto;
+  gap: 20px;
+}
+.event-date-time{
+  width: fit-content;
+  padding: 10px;
+  border-radius: 10px;
+}
+button{
+  background-color: #000000;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+  width: 100px;
+  padding: 5px 0;
+  display: inline-block;
+}
+@media screen and (min-width: 568px){
+  .event-card{
+    flex-direction: row;
+    /* align-items: center; */
+    justify-content: space-between;
+    height: auto;
+  }
+  .event-description,h4{
+    width: 95%;
+    margin: auto;
+  }
+  .event-date-time{
+    width: 150px;
+    background-color: aqua;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: auto;
+    border-radius: 10px;
+    padding: 5px;
+  }
+  .event-date{
+    font-size: small;
+  }
+  .event-status{
+    align-self: center;
+  }
+  button{
+    width: 100px;
+    text-align: center;
+  }
+  
+}

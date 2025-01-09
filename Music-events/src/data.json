@@ -1,0 +1,34 @@
+{
+    "location": "London, United Kingdom",
+    "events": [
+      {
+        "date": "Today",
+        "time": "21:00",
+        "title": "Swiftogeddon - The Taylor Swift Club Night",
+        "description": "Swiftogeddon is a night dedicated to worshiping at the altar of Taylor Swift: non-stop Swifty all night: deep cuts, extended mixes, fan favourites...",
+        "status": "Sold out"
+      },
+      {
+        "date": "17 December",
+        "time": "22:00",
+        "title": "Lana Del Rave",
+        "description": "Launching the first ever ‘Lana Del Rave’ at Heaven Nightclub. Join us for a night devoted to the Queen of Alternative as well as favourites from...",
+        "status": "Buy a Ticket"
+      },
+      {
+        "date": "19 December",
+        "time": "18:30",
+        "title": "MASSAOKE: XMAS LIVE at the Electric Ballroom",
+        "description": "Featuring all your favourite festive hits from WHAM, SLADE, MARIAH, WIZZARD, THE POGUES and many more - as well as hairbrush anthems...",
+        "status": "Buy a Ticket"
+      },
+      {
+        "date": "22 December",
+        "time": "19:00",
+        "title": "Eleni Tsaligopoulou full-band",
+        "description": "Eleni Tsaligopoulou is one of the most popular and beloved Greek singers with a wide range of repertoire and timeless hits. During her 30 year...",
+        "status": "Buy a Ticket"
+      }
+    ]
+}
+  

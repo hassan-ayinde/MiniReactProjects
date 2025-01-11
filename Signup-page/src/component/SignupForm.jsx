@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SignupForm = ({ closeModal, fontIcon }) => {
+const SignupForm = ({ closeModal, fontIcon:{google,eye,eyeSlash},showPassword,togglePassword}) => {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
@@ -40,8 +40,12 @@ const SignupForm = ({ closeModal, fontIcon }) => {
                     <label for="floating_outline_email" className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Email</label>
                 </div>
                 <div className="relative">
-                    <input type="password" id="floating_outlined_password" className="border block px-2.5 py-2.5 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer leading-none" placeholder=" " />
+                    <input type={showPassword ? 'text' : 'password'} id="floating_outlined_password" className="border block px-2.5 py-2.5 pr-8 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer leading-none" placeholder=" " />
                     <label for="floating_outlined_password" className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Password</label>
+                    <span 
+                        className='absolute top-2 right-0 px-2 text-gray-500 cursor-pointer'
+                        onClick={togglePassword}
+                    >{showPassword ? eye: eyeSlash}</span>
                 </div>
                 <div className="my-4">
                     <button className='bg-slate-800 text-white w-full py-1.5 rounded-lg '>Sign up</button>
@@ -61,7 +65,7 @@ const SignupForm = ({ closeModal, fontIcon }) => {
                 </div>
                 <div>
                     <button className='outline outline-1 outline-solid outline-gray-300 w-full flex items-center justify-center gap-3 py-1 rounded-lg'>
-                        {fontIcon}
+                        {google}
                         <span>Sign up with Google</span>
                     </button>
                 </div>

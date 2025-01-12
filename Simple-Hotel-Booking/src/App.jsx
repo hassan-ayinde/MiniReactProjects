@@ -105,7 +105,9 @@ function App() {
         <div>
           <div>
             <figure className='relative'>
-              <img src={HotelRoom} alt="" />
+              <div className='main-image w-full relative flex items-center h-auto justify-center bg-gray-400'>
+                <img src={HotelRoom} alt="" className='mix-blend-multiply'/>
+              </div>
               <figcaption className='absolute bottom-0 left-0 w-full p-4 text-white'>
                 <div className=''>
                   <h3 className='font-bold'>Golden Apartment</h3>

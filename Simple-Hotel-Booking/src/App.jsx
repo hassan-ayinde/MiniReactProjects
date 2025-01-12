@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCalendarDays } from '@fortawesome/free-regular-svg-icons'
+import {faLocationDot} from '@fortawesome/free-solid-svg-icons'
 import HotelRoom from './assets/images/hotel-room.jpg'
 import HotelLounge from './assets/images/hotel-lounge.jpg'
 import HotelFront from './assets/images/hotel-front.jpg'
@@ -13,6 +14,9 @@ function App() {
 
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+
+  const startDatePickerRef = useRef(null); // Ref for start date picker
+  const endDatePickerRef = useRef(null);   // Ref for end date picker
 
   // Function to dynamically set day classes
   const getDayClass = (date) => {
@@ -25,6 +29,11 @@ function App() {
       }
     }
     return undefined;
+  };
+  const handleInputFocus = (pickerRef) => {
+    if (pickerRef.current) {
+      pickerRef.current.setFocus(); // Programmatically focus the DatePicker input
+    }
   };
 
   return (
@@ -40,11 +49,12 @@ function App() {
                 dateFormat="d MMMM, yyyy"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
                 placeholderText="Select check-in date" required 
+                ref={startDatePickerRef}
               />
               <span className='absolute bottom-0 right-0 p-2'>
                 <FontAwesomeIcon icon={faCalendarDays} 
-                  className='text-gray-500 dark:text-gray-400'
-
+                  className='text-gray-500 dark:text-gray-400 cursor-pointer' 
+                  onClick={() => handleInputFocus(startDatePickerRef)}
                 />
               </span>
             </div>
@@ -58,13 +68,15 @@ function App() {
                 required
                 placeholderText="Select check-out date"
                 dateFormat="d MMMM, yyyy"
+                ref={endDatePickerRef}
               />
               <span className='absolute bottom-0 right-0 p-2'>
-                <FontAwesomeIcon icon={faCalendarDays} className='text-gray-500 dark:text-gray-400' />
+                <FontAwesomeIcon icon={faCalendarDays} 
+                  className='text-gray-500 dark:text-gray-400 cursor-pointer' 
+                  onClick={() => handleInputFocus(endDatePickerRef)}
+                />
               </span>
             </div>
-
-
             <div className="flex items-center gap-5">
               <div className='w-full'>
                 <label for="countries" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Adults</label>
@@ -92,9 +104,17 @@ function App() {
         </div>
         <div>
           <div>
-            <figure>
+            <figure className='relative'>
               <img src={HotelRoom} alt="" />
-              <figcaption></figcaption>
+              <figcaption className='absolute bottom-0 left-0 w-full p-4 text-white'>
+                <div className=''>
+                  <h3 className='font-bold'>Golden Apartment</h3>
+                </div>
+                <div className='flex items-center gap-2'>
+                  <FontAwesomeIcon icon={faLocationDot} className='text-orange-600'/>
+                  <p className='text-xs'>Punta Cana, Dominican Republic</p>
+                </div>
+              </figcaption>
             </figure>
           </div>
           <div className='grid grid-cols-3 gap-2 mt-4'>

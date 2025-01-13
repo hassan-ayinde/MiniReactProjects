@@ -1,11 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&display=swap');
 body {
   margin: 0;
   padding: 0;
-  background-color: gray;
+  background-color: #E5CCBD;
+  font-family: "Parkinsans", serif;
 }
 .App{
-  width: 300px;
+  /* width: 300px; */
   margin: 0 auto;
+  background-color: #FFFFFF;
 }
 .slick-dots{
   bottom: 10px;

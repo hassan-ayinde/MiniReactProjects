@@ -5,27 +5,40 @@ import InProgress from './components/InProgress';
 import UnderReview from './components/UnderReview';
 import TaskDone from './components/TaskDone';
 import { FaPlus } from "react-icons/fa";
+import TaskForm from './components/TaskForm';
 
 function App() {
   const [selectedCategory, setSelectedCategory] = useState('');
+  const [tasks, setTasks] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   const handleOptionChange = (e) => {
     setSelectedCategory(e.target.value);
+    setIsModalOpen(false);
   }
 
 
   const renderTask = () => {
     switch(selectedCategory) {
-      case 'Todo':
-        return <Todo task={selectedCategory} />
+      case 'To do':
+        return <Todo task={selectedCategory} icon={<FaPlus/>} openModal={openModal}/>
       case 'In Progress':
-        return <InProgress task={selectedCategory} />
+        return <InProgress task={selectedCategory} icon={<FaPlus/>} openModal={openModal}/>
       case 'Under Review':
-        return <UnderReview task={selectedCategory} />
+        return <UnderReview task={selectedCategory} icon={<FaPlus/>} openModal={openModal}/>
       case 'Done':
-        return <TaskDone task={selectedCategory} />
+        return <TaskDone task={selectedCategory} icon={<FaPlus/>} openModal={openModal}/>
       default:
         return null; 
+    }
+  }
+
+  const renderAddTask = () => {
+    if(selectedCategory){
+      setTasks([...tasks, selectedCategory])
     }
   }
   
@@ -43,7 +56,7 @@ function App() {
           onChange={handleOptionChange}
         >
           <option value=''>Task Category</option>
-          <option value='Todo'>Todo</option>
+          <option value='To do'>To do</option>
           <option value='In Progress'>In Progress</option>
           <option value='Under Review'>Under Review</option>
           <option value='Done'>Done</option>
@@ -51,19 +64,11 @@ function App() {
       </form>
 
       <div>
-        <div class="mt-5 font-bold flex items-center gap-1">
+        <div class="mt-5 font-bold flex items-center gap-2">
           {renderTask()}
-          <span>
-            {selectedCategory == ''? null:
-              (<FaPlus 
-                className='text-slate-500 cursor-pointer'
-                // onClick={}
-              />)
-            }
-          </span>
         </div>
+        {isModalOpen && <TaskForm closeModal={closeModal} />}
       </div>
-
     </div>
   )
 }

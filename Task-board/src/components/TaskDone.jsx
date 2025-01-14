@@ -1,9 +1,15 @@
 import React from 'react'
 
-const TaskDone = ({task}) => {
+const TaskDone = ({task,icon,openModal}) => {
   return (
     <div>
-        <h1>{task}</h1>
+        <div className='flex items-center gap-2'>
+            <h1>{task}</h1>
+            <span 
+              className='text-slate-400 add-icon'
+              onClick={openModal}
+            >{icon}</span>
+        </div>
     </div>
   )
 }

@@ -1,0 +1,45 @@
+[
+    {
+    "id": 1,
+    "name": "Lola",
+    "gender": "Female",
+    "breed": "Jack Russell Terrier",
+    "distance": "2.5 miles",
+    "image": "lola.jpg",
+    "liked": false
+    },
+    {
+    "id": 2,
+    "name": "Bailey",
+    "gender": "Male",
+    "breed": "Labrador Retriever",
+    "distance": "10 miles",
+    "image": "bailey.jpg",
+    "liked": true,
+    "details": {
+        "age": "6 yr",
+        "height": "35 inch",
+        "weight": "17 lb",
+        "description": "Bailey is a gentle and loving Labrador Retriever who is eagerly awaiting her forever home. With his beautiful smile and playful nature, he's perfect for a family."
+        }
+    },
+    {
+    "id": 3,
+    "name": "Buddy",
+    "gender": "Male",
+    "breed": "Border Collie",
+    "distance": "33 miles",
+    "image": "buddy.jpg",
+    "liked": false
+    },
+    {
+    "id": 4,
+    "name": "Tucker",
+    "gender": "Male",
+    "breed": "German Shepherd",
+    "distance": "64 miles",
+    "image": "tucker.jpg",
+    "liked": false
+    }
+]
+

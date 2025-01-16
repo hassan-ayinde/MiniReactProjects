@@ -9,7 +9,7 @@ const ProductList = () => {
   return (
     <div>
         <div className='flex justify-between items-center'>
-            <h1>Your product list</h1>
+            <h1 className='font-semibold'>Your product list</h1>
             <p>4 Items</p>
         </div>
         <ProductItems 

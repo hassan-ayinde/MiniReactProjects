@@ -7,7 +7,7 @@ const ProductItems = ({imgSrc, productTitle, productPrice}) => {
           <img src={imgSrc} alt="" className='w-full h-full object-cover'/>
         </div>
         <div className='flex-grow ml-4 flex flex-col justify-evenly'>
-            <h2 className='text-sm font-medium'>{productTitle}</h2>
+            <h2 className='sm:text-sm font-medium'>{productTitle}</h2>
             <div className='flex items-center space-x-1 text-sm'>
               <button className='bg-slate-300 rounded-sm h-fit px-1'>-</button>
               <span>1</span>

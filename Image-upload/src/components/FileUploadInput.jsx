@@ -2,13 +2,19 @@ import React,{useState} from 'react';
 import {useDropzone} from 'react-dropzone';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPause, faPlay, faTrash, faCheck, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { IoMdImages } from "react-icons/io";
+import ConfirmationDialog from './ConfirmationDialog';
 
 const FileUploadInput = () => {
   const [filesList, setFilesList] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [fileToDelete, setFileToDelete] = useState(null);
+
   const { getRootProps, getInputProps } = useDropzone({
     accept: {
       'image/jpeg': [],
-      'image/png': []
+      'image/png': [],
+      'image/jpg': [],
     },
     onDrop: (acceptedFiles) => {
       // Append new files to the existing list with initial progress set to 0
@@ -55,22 +61,29 @@ const FileUploadInput = () => {
 
   const handleFileRemove = (fileId) => {
     setFilesList((prevFiles) => prevFiles.filter((file) => file.id !== fileId));
+    setIsModalOpen(false);
+    setFileToDelete(null);
+  };
+
+  const handleDeleteClick = (fileId) => {
+    setFileToDelete(fileId);
+    setIsModalOpen(true);
   };
 
   
   const files = filesList.map((file,index) => (
     <li
       key={index}
-      className="flex items-center p-2 border border-gray-300 rounded-lg m-2"
+      className="flex sm:gap-3 flex-col sm:flex-row items-center p-2 border border-gray-300 rounded-lg my-2"
     >
       <div className=''>
         <img
           src={file.preview}
           alt={file.path}
-          className="w-8 h-8 object-cover rounded-lg"
+          className="w-14 h-14 object-cover rounded-lg"
         />
       </div>
-      <div>
+      <div className='w-full'>
         <div className="flex items-center justify-between w-full">
           <div className='flex flex-col mr-5'>
             <p className="mt-2 text-sm text-gray-700">{file.path}</p>
@@ -84,13 +97,15 @@ const FileUploadInput = () => {
             />
             <FontAwesomeIcon 
               icon={file.progress === 100 ? faTrash : faXmark} 
-              className="text-blue-500 cursor-pointer" 
-              onClick={() => handleFileRemove(file.id)} 
+              className={`text-red-500 cursor-pointer ${file.progress === 100 && 'text-red-500'}`} 
+              onClick={() =>
+                file.progress === 100 ? handleDeleteClick(file.id) : handleFileRemove(file.id)
+              }
             />
           </div>
         </div>
         <div className='w-full flex items-center'>
-          <div className='w-full bg-red-200 rounded-full h-2.5 flex items-center'>
+          <div className='w-full bg-gray-200 rounded-full h-2.5 flex items-center'>
             <div
               className="bg-blue-600 h-2.5 rounded-full"
               style={{ width: `${file.progress}%` }}
@@ -112,13 +127,23 @@ const FileUploadInput = () => {
 
   return (
     <section className="container">
-      <div {...getRootProps({className: 'dropzone'})}  className='border border-dashed border-gray-300 rounded-lg'>
+      <div {...getRootProps({className: 'dropzone'})}  className='border border-dashed border-gray-300 rounded-lg cursor-pointer'>
         <input {...getInputProps()} />
-        <p className='p-5 w-full h-full cursor-pointer'>Drag 'n' drop some files here, or click to select files</p>
+        <div className='flex flex-col items-center justify-center my-4 cursor-pointer'>
+          <IoMdImages className='text-5xl text-blue-700 mx-auto' />
+          <p className='h-full font-medium text-center'>Drop your image here or <span className='text-blue-700 font-semibold'>browse</span></p>
+          <p className='uppercase text-gray-300 text-xs mt-1'>png,jpg,jeg</p>
+        </div>
       </div>
       <aside>
       <ul className="">{files}</ul>
       </aside>
+
+      <ConfirmationDialog
+        isOpen={isModalOpen}
+        onConfirm={() => handleFileRemove(fileToDelete)}
+        onCancel={() => setIsModalOpen(false)}
+      />
     </section>
   );
 }

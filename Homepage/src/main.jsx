@@ -1,10 +1,12 @@
-import { StrictMode } from 'react'
+import { Fragment, StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
+    <div className='w-11/12 mx-auto border-3 border-solid border-gray-300'>
+      <App/>
+    </div>
   </StrictMode>,
 )

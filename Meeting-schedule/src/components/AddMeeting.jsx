@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import { format } from "date-fns";
+import { IoCloseOutline } from "react-icons/io5";
 
 import "react-datepicker/dist/react-datepicker.css";
 
-const AddMeeting = ({addEvent}) => {
+const AddMeeting = ({addEvent,isOpen,onCancel}) => {
+    if (!isOpen) return null
     const [meetingDetails, setMeetingDetails] = useState({
         title: '',
         date:null,
@@ -53,84 +55,91 @@ const AddMeeting = ({addEvent}) => {
 
 
   return (
-    <div>
-        <h1>Add Meeting</h1>
-        <form action="" onSubmit={handleFormSubmit}>
-            <div>
-                <label htmlFor="">Title</label>
-                <input type="text" name="" id="" 
-                    className="px-2 py-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 w-full" placeholder="Enter Title"
-                    value={meetingDetails.title} required
-                    onChange={(e) =>
-                        setMeetingDetails({...meetingDetails,title:e.target.value})
-                    }
-                />
+    <div className='fixed top-0 left-0 w-full h-full bg-mintgreen flex justify-center items-center'>
+        <div className="bg-white p-5 rounded-lg shadow-lg w-72 mx-auto sm:w-96">
+            <div className="flex justify-between items-center border-b pb-2 mb-2">
+                <h1>Add Meeting</h1>
+                <button onClick={onCancel} className='cursor-pointer text-2xl'>
+                    <IoCloseOutline/>
+                </button>
             </div>
-            <div className="w-full">
-                <label htmlFor="">Date</label>
-                <DatePicker
-                    selected={meetingDetails.date}
-                    minDate={(new Date()).toDateString()}
-                    required
-                    onChange={(date) =>
-                        setMeetingDetails({ ...meetingDetails, date: date })
-                    }
-                    // dateFormat="d, MMMM yyyy"
-                    customInput={
-                        <CustomDateInput
-                          selectedDate={meetingDetails.date}
-                        />
-                    }
-                />
-            </div>
-            {/* <div>
-                <p>Meeting Status</p>
+            <form action="" onSubmit={handleFormSubmit}>
                 <div>
-                    <input type="radio" name="" id="" /> Not Started
-                    <input type="radio" name="" id="" /> In Progress
-                    <input type="radio" name="" id="" /> Done
-                </div>
-            </div> */}
-            <div>
-                <div>
-                    <label htmlFor="">Start</label>
-                    <DatePicker
-                        selected={meetingDetails.startTime}
-                        onChange={(date) =>
-                            setMeetingDetails({ ...meetingDetails, startTime: date })
+                    <label htmlFor="">Title</label>
+                    <input type="text" name="" id="" 
+                        className="px-2 py-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 w-full" placeholder="Enter Title"
+                        value={meetingDetails.title} required
+                        onChange={(e) =>
+                            setMeetingDetails({...meetingDetails,title:e.target.value})
                         }
-                        required
-                        showTimeSelect
-                        showTimeSelectOnly
-                        timeIntervals={1}
-                        timeCaption="Time"
-                        dateFormat="h:mm aa"
-                        placeholderText="02:00 PM"
-                        className="px-2 py-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 w-full"
-                    />                  
+                    />
                 </div>
-                <div>
-                    <label htmlFor="">End</label>
+                <div className="w-full">
+                    <label htmlFor="">Date</label>
                     <DatePicker
-                        selected={meetingDetails.endTime}
-                        onChange={(date) =>
-                            setMeetingDetails({ ...meetingDetails, endTime: date })
-                        }
+                        selected={meetingDetails.date}
+                        minDate={(new Date()).toDateString()}
                         required
-                        showTimeSelect
-                        showTimeSelectOnly
-                        timeIntervals={1}
-                        minTime={meetingDetails.startTime || new Date()}  // Use startTime as minTime
-                        maxTime={new Date().setHours(23, 59, 59)}
-                        timeCaption="Time"
-                        dateFormat="h:mm aa"
-                        placeholderText="07:07 PM"
-                        className="px-2 py-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 w-full"
-                    /> 
+                        onChange={(date) =>
+                            setMeetingDetails({ ...meetingDetails, date: date })
+                        }
+                        // dateFormat="d, MMMM yyyy"
+                        customInput={
+                            <CustomDateInput
+                            selectedDate={meetingDetails.date}
+                            />
+                        }
+                    />
                 </div>
-            </div>
-            <button type="submit" className="mt-4 w-full text-white bg-yellow-500 py-2 rounded-lg hover:bg-yellow-600 cursor-pointer">Save</button>
-        </form>
+                {/* <div>
+                    <p>Meeting Status</p>
+                    <div>
+                        <input type="radio" name="" id="" /> Not Started
+                        <input type="radio" name="" id="" /> In Progress
+                        <input type="radio" name="" id="" /> Done
+                    </div>
+                </div> */}
+                <div className="sm:flex justify-between items-center gap-4">
+                    <div>
+                        <label htmlFor="">Start</label>
+                        <DatePicker
+                            selected={meetingDetails.startTime}
+                            onChange={(date) =>
+                                setMeetingDetails({ ...meetingDetails, startTime: date })
+                            }
+                            required
+                            showTimeSelect
+                            showTimeSelectOnly
+                            timeIntervals={1}
+                            timeCaption="Time"
+                            dateFormat="h:mm aa"
+                            placeholderText="02:00 PM"
+                            className="px-2 py-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 w-full"
+                        />                  
+                    </div>
+                    <div>
+                        <label htmlFor="">End</label>
+                        <DatePicker
+                            selected={meetingDetails.endTime}
+                            onChange={(date) =>
+                                setMeetingDetails({ ...meetingDetails, endTime: date })
+                            }
+                            required
+                            showTimeSelect
+                            showTimeSelectOnly
+                            timeIntervals={1}
+                            minTime={meetingDetails.startTime || new Date()}  // Use startTime as minTime
+                            maxTime={new Date().setHours(23, 59, 59)}
+                            timeCaption="Time"
+                            dateFormat="h:mm aa"
+                            placeholderText="07:07 PM"
+                            className="px-2 py-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 w-full"
+                        /> 
+                    </div>
+                </div>
+                <button type="submit" className="mt-4 w-full text-white bg-yellow-500 py-2 rounded-lg hover:bg-yellow-600 cursor-pointer">Save</button>
+            </form>
+        </div>
     </div>
   )
 }

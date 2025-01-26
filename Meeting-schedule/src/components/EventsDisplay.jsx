@@ -10,7 +10,7 @@ const EventsDisplay = () => {
     ]
     const [events, setEvents] = useState(EventsList);
 
-//   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   const handleStatusChange = (index) => {
     setEvents((prevEvents) => {
@@ -30,11 +30,12 @@ const EventsDisplay = () => {
    // Function to add a new event
    const addEvent = (newEvent) => {
     setEvents((prevEvents) => [...prevEvents, newEvent]);
+    setIsModalOpen(false);
   };
 
   return (
     <div className="flex items-center justify-center h-screen">
-      <div className="p-4 bg-white rounded-lg shadow-lg">
+      <div className="p-4 bg-white rounded-lg shadow-lg w-72 mx-auto sm:w-96">
         <h1 className="text-lg font-semibold mb-4">Today</h1>
         <ul className="space-y-4">
           {events.map((event, index) => {
@@ -72,11 +73,29 @@ const EventsDisplay = () => {
             );
           })}
         </ul>
-        <button className="mt-4 w-full text-white bg-yellow-500 py-2 rounded-lg hover:bg-yellow-600 cursor-pointer">
+        <button 
+            className="mt-4 w-full text-white bg-yellow-500 py-2 rounded-lg hover:bg-yellow-600 cursor-pointer"
+            onClick={() => setIsModalOpen(true)}
+        >
           +
         </button>
 
-        <AddMeeting addEvent={addEvent}/>
+        {/* {isModalOpen && (
+                    <div className="fixed top-0 left-0 w-full h-full bg-opacity-50 flex justify-center items-center">
+                        <div className="bg-white p-6 rounded-lg shadow-lg w-fit">
+                            <button
+                                className="absolute top-2 right-2 text-gray-500"
+                                onClick={() => setIsModalOpen(false)}
+                            >
+                                ✖
+                            </button>
+                            <AddMeeting addEvent={addEvent} />
+                        </div>
+                    </div>
+                )
+        } */}
+
+        <AddMeeting isOpen={isModalOpen} addEvent={addEvent} onCancel={() => setIsModalOpen(false)} />
       </div>
     </div>
   );

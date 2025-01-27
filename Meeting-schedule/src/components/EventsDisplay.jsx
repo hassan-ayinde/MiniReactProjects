@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import { IoIosCheckmark } from "react-icons/io";
+import AddMeeting from "./AddMeeting";
 
 const EventsDisplay = () => {
-  const [events, setEvents] = useState([
-    { title: "Weekly Plant Care Workshop", time: "10:00 AM - 11:00 AM", status: "Done" },
-    { title: "Succulent Seminar", time: "1:00 PM - 1:30 PM", status: "In Progress" },
-    { title: "Monthly Plant Swap", time: "2:00 PM - 3:00 PM", status: "Not Started" },
-  ]);
+    const EventsList = [
+        { title: "Weekly Plant Care Workshop", time: "10:00 AM - 11:00 AM", status: "Done" },
+        { title: "Succulent Seminar", time: "1:00 PM - 1:30 PM", status: "In Progress" },
+        { title: "Monthly Plant Swap", time: "2:00 PM - 3:00 PM", status: "Not Started" },
+    ]
+    const [events, setEvents] = useState(EventsList);
+
+//   const [isModalOpen, setIsModalOpen] = useState(false)
 
   const handleStatusChange = (index) => {
     setEvents((prevEvents) => {
@@ -63,9 +67,11 @@ const EventsDisplay = () => {
             );
           })}
         </ul>
-        <button className="mt-4 w-full text-white bg-yellow-500 py-2 rounded-lg hover:bg-yellow-600">
+        <button className="mt-4 w-full text-white bg-yellow-500 py-2 rounded-lg hover:bg-yellow-600 cursor-pointer">
           +
         </button>
+
+        <AddMeeting/>
       </div>
     </div>
   );

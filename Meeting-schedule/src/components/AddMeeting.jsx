@@ -4,7 +4,7 @@ import { format } from "date-fns";
 
 import "react-datepicker/dist/react-datepicker.css";
 
-const AddMeeting = () => {
+const AddMeeting = ({addEvent}) => {
     const [meetingDetails, setMeetingDetails] = useState({
         title: '',
         date:null,
@@ -34,17 +34,20 @@ const AddMeeting = () => {
             : "Not Set";
 
         const savedMeetingDetails = {
-            savedTitle: meetingDetails.title? meetingDetails.title:"Not Set",
-            savedDate: meetingDetails.date ? meetingDetails.date.toDateString() : "Not Set",
-            savedStartTime: savedStartTime,
-            savedEndTime: savedEndTime
+            title: meetingDetails.title? meetingDetails.title:"Not Set",
+            // date: meetingDetails.date ? meetingDetails.date.toDateString() : "Not Set",
+            startTime: savedStartTime,
+            endTime: savedEndTime,
+            status: 'Not Started'
         }
         console.log("Meeting Details:", savedMeetingDetails);
+
+        addEvent(savedMeetingDetails);
         setMeetingDetails({
             title:'',
-            date:'',
-            startTime:'',
-            endTime:''
+            // date:'',
+            startTime:null,
+            endTime:null
         })
     }
 
@@ -56,18 +59,19 @@ const AddMeeting = () => {
             <div>
                 <label htmlFor="">Title</label>
                 <input type="text" name="" id="" 
-                    className="border border-solid w-full" placeholder="Enter Title"
-                    value={meetingDetails.title}
+                    className="px-2 py-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 w-full" placeholder="Enter Title"
+                    value={meetingDetails.title} required
                     onChange={(e) =>
                         setMeetingDetails({...meetingDetails,title:e.target.value})
                     }
                 />
             </div>
             <div className="w-full">
-                <label htmlFor=""></label>
+                <label htmlFor="">Date</label>
                 <DatePicker
                     selected={meetingDetails.date}
                     minDate={(new Date()).toDateString()}
+                    required
                     onChange={(date) =>
                         setMeetingDetails({ ...meetingDetails, date: date })
                     }
@@ -79,6 +83,14 @@ const AddMeeting = () => {
                     }
                 />
             </div>
+            {/* <div>
+                <p>Meeting Status</p>
+                <div>
+                    <input type="radio" name="" id="" /> Not Started
+                    <input type="radio" name="" id="" /> In Progress
+                    <input type="radio" name="" id="" /> Done
+                </div>
+            </div> */}
             <div>
                 <div>
                     <label htmlFor="">Start</label>
@@ -87,6 +99,7 @@ const AddMeeting = () => {
                         onChange={(date) =>
                             setMeetingDetails({ ...meetingDetails, startTime: date })
                         }
+                        required
                         showTimeSelect
                         showTimeSelectOnly
                         timeIntervals={1}
@@ -103,6 +116,7 @@ const AddMeeting = () => {
                         onChange={(date) =>
                             setMeetingDetails({ ...meetingDetails, endTime: date })
                         }
+                        required
                         showTimeSelect
                         showTimeSelectOnly
                         timeIntervals={1}

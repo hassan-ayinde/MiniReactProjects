@@ -4,9 +4,9 @@ import AddMeeting from "./AddMeeting";
 
 const EventsDisplay = () => {
     const EventsList = [
-        { title: "Weekly Plant Care Workshop", time: "10:00 AM - 11:00 AM", status: "Done" },
-        { title: "Succulent Seminar", time: "1:00 PM - 1:30 PM", status: "In Progress" },
-        { title: "Monthly Plant Swap", time: "2:00 PM - 3:00 PM", status: "Not Started" },
+        { title: "Weekly Plant Care Workshop", startTime: "10:00 AM", endTime: "11:00 AM", status: "Done" },
+        { title: "Succulent Seminar", startTime: "1:00 PM", endTime: "1:30 PM", status: "In Progress" },
+        { title: "Monthly Plant Swap", startTime: "2:00 PM", endTime: "3:00 PM", status: "Not Started" },
     ]
     const [events, setEvents] = useState(EventsList);
 
@@ -25,6 +25,11 @@ const EventsDisplay = () => {
         return event;
       });
     });
+  };
+
+   // Function to add a new event
+   const addEvent = (newEvent) => {
+    setEvents((prevEvents) => [...prevEvents, newEvent]);
   };
 
   return (
@@ -50,7 +55,7 @@ const EventsDisplay = () => {
                 </span>
                 <div className="flex-1">
                   <h4 className="text-sm font-medium">{event.title}</h4>
-                  <p className="text-xs text-gray-500">{event.time}</p>
+                  <p className="text-xs text-gray-500">{event.startTime} - {event.endTime}</p>
                 </div>
                 <span
                   className={`text-xs px-2 py-1 rounded-full ${
@@ -71,7 +76,7 @@ const EventsDisplay = () => {
           +
         </button>
 
-        <AddMeeting/>
+        <AddMeeting addEvent={addEvent}/>
       </div>
     </div>
   );

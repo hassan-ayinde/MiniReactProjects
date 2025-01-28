@@ -1,12 +1,13 @@
 import React from 'react'
 import { IoIosSearch } from "react-icons/io";
 import { PiMapPinLight } from "react-icons/pi";
+import JobListing from './JobListing';
 
 const SearchBar = () => {
   return (
-    <div className='flex items-center h-screen justify-center'>
+    <div className='flex items-center justify-center'>
         <form 
-            class="flex flex-col sm:flex-row items-center bg-gray-primary p-3 rounded-2xl gap-3 w-[90%] max-w-lg sm:w-full sm:max-w-xl transition-all duration-300 ease-linear"
+            class="flex flex-col sm:flex-row items-center bg-gray-primary p-3 rounded-2xl gap-3 w-[90%] max-w-lg sm:w-full sm:max-w-xl transition-all duration-300 ease-linear mx-auto"
             onSubmit={(e) => e.preventDefault()}
         >
             <div className='flex items-center w-full'>
@@ -19,7 +20,7 @@ const SearchBar = () => {
                     </div>
                 </div>
 
-                <div className='relative w-full'>
+                <div className='relative w-1/2'>
                     <div className='absolute inset-y-0 inset-x-0 start-0 ps-1 flex items-center pointer-events-none'>
                         <PiMapPinLight />
                     </div>
@@ -36,6 +37,7 @@ const SearchBar = () => {
                 <button type="submit" className='bg-pink-400 text-white px-3 py-1 rounded-xl w-full cursor-pointer hover:bg-pink-800'>Search</button>
             </div>
         </form>
+        {/* <JobListing/> */}
     </div>
   )
 }

@@ -1,11 +1,13 @@
 import SearchBar from './components/SearchBar'
 import './App.css'
+import JobListing from './components/JobListing'
 
 function App() {
 
   return (
-    <div>
+    <div className=''>
       <SearchBar/>
+      <JobListing/>
     </div>
   )
 }

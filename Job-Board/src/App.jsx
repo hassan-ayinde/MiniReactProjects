@@ -1,13 +1,21 @@
+import React, {useState} from 'react'
 import SearchBar from './components/SearchBar'
-import './App.css'
 import JobListing from './components/JobListing'
+import './App.css'
 
 function App() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [location, setLocation] = useState("");
+
+  const handleSearch = (query, loc) => {
+    setSearchQuery(query);
+    setLocation(loc);
+  };
 
   return (
     <div className=''>
-      <SearchBar/>
-      <JobListing/>
+      <SearchBar onSearch={handleSearch}/>
+      <JobListing searchQuery={searchQuery} location={location}/>
     </div>
   )
 }

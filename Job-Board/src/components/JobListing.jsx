@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { LiaCcAmazonPay } from "react-icons/lia";
 import axios from "axios";
 
-const JobListing = () => {
+const JobListing = ({searchQuery, location}) => {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -49,58 +49,60 @@ const JobListing = () => {
     }
   }
   
-  // Example Usage
-  const date = "2025-01-24T11:00:02+00:00";
-  console.log(timeAgo(date)); // Output depends on the current date/time
   
+   // Filter jobs based on searchQuery and location
+   const filteredJobs = jobs.filter((job) => {
+    const matchesQuery = job.position
+      .toLowerCase()
+      .includes(searchQuery.toLowerCase());
+    const matchesLocation =
+      location === "" || job.location?.toLowerCase() === location.toLowerCase();
+
+    return matchesQuery && matchesLocation;
+  });
 
   return (
-    <div className="w-[90%] max-w-lg sm:w-full sm:max-w-xl mx-auto bg-gray-200 p-4 rounded-2xl mt-5 shadow-lg">
+    <div className="w-[90%] max-w-lg  sm:w-[90%] sm:max-w-3xl mx-auto bg-gray-200 p-4 rounded-2xl mt-5 shadow-lg">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-lg font-bold">Search Results</h2>
         <p>
-          <span className="font-semibold">{jobs.length}</span> Results found
+          <span className="font-semibold">{filteredJobs.length}</span> Results found
         </p>
       </div>
 
       {loading && <p className="text-center text-gray-500">Loading jobs...</p>}
       {error && <p className="text-center text-red-500">{error}</p>}
 
-      {!loading && !error && jobs.length === 0 && (
+      {!loading && !error && filteredJobs.length === 0 && (
         <p className="text-center text-gray-500">No jobs found.</p>
       )}
 
-      <div className="space-y-4 sm:grid grid-cols-2">
-        {jobs.map((job) => (
+      <div className="sm:grid grid-cols-2 gap-3">
+        {filteredJobs.map((job) => (
           <div
             key={job.id}
             className="p-3 border rounded-lg bg-white shadow-sm hover:shadow-md"
           >
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-3">
               <div>
                 <img
                   src={job.company_logo}
                   alt={job.company}
-                  className="w-12 h-12 object-cover"
+                  className="w-11 h-11 object-cover rounded-lg border border-gray-200 border-solid p-1 bg-gray-primary"
                 />
               </div>
               <div>
-                <h3 className="text-lg font-semibold">{job.position}</h3>
+                <h5 className="font-semibold text-sm">{job.position}</h5>
                 <p className="text-sm text-gray-600">{job.company}</p>
               </div>
             </div>
-            <div>
+            <ul className="flex flex-wrap gap-3 mt-2">
             {
               job.tags.slice(0, 3).map((tag) => (
-                <span
-                  key={tag}
-                  className="bg-gray-200 text-gray-600 text-sm px-2 py-1 rounded-lg mr-2"
-                >
-                  {tag}
-                </span>
+                <li key={tag} className="bg-gray-200 text-gray-600 text-sm px-2 py-1 rounded-lg mr-2">{tag}</li>
               ))
             }
-            </div>
+            </ul>
             <div className="flex justify-between items-center mt-4">
               <div className="flex items-center space-x-2">
                 <LiaCcAmazonPay />
